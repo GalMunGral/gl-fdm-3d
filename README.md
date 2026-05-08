@@ -26,10 +26,10 @@ The renderer implements arcball rotation from scratch, without relying on framew
 q = \cos\tfrac{\theta}{2} + \sin\tfrac{\theta}{2}\,\frac{\mathbf{u} \times \mathbf{d}}{\|\mathbf{u} \times \mathbf{d}\|}, \qquad \theta = \arccos(\mathbf{u} \cdot \mathbf{d})
 ```
 
-where **u** and **d** are the unit directions corresponding to the pointer positions before and after the drag. This quaternion is applied to the object's basis vectors $(\mathbf{e}_1, \mathbf{e}_2, \mathbf{e}_3)$, maintained in world coordinates. The camera remains fixed in world space; before each frame, it is transformed into object space by
+where **u** and **d** are the unit directions corresponding to the pointer positions before and after the drag. This quaternion is applied to the object's basis vectors $(\mathbf{e}_1, \mathbf{e}_2, \mathbf{e}_3)$, maintained in world coordinates. The camera remains fixed in world space; before each frame, it is transformed into object space by the inverse of the rotation matrix R
 
 ```math
-M^{-1} = M^T = \begin{pmatrix} \mathbf{e}_1^T \\ \mathbf{e}_2^T \\ \mathbf{e}_3^T \end{pmatrix}
+R^{-1} = R^T = \begin{pmatrix} \mathbf{e}_1^T \\ \mathbf{e}_2^T \\ \mathbf{e}_3^T \end{pmatrix}
 ```
 
 since the basis is orthonormal. Ray marching is performed in object space because the volume occupies a fixed axis-aligned region there, making texture lookups a direct componentwise normalization.
