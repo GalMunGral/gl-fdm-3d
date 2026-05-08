@@ -17,3 +17,13 @@ The simulation runs continuously, with each frame advancing the wave equation by
 ### Packing 3D State into a 2D Texture
 
 WebGL does not support rendering to a 3D texture. To apply the ping-pong framebuffer pattern from gl-fdm-2d, the 3D grid is flattened into a 2D texture by stacking z-slices along the vertical axis. The fragment shader reconstructs the three-dimensional coordinates from the fragment position using integer division and modular arithmetic.
+
+### Arcball Camera Control
+
+The renderer implements arcball rotation without a scene graph or camera abstraction. Dragging maps two screen positions to directions on a virtual sphere; the quaternion that rotates **u** onto **d** is
+
+```math
+q = \cos\tfrac{\theta}{2} + \sin\tfrac{\theta}{2}\,\frac{\mathbf{u} \times \mathbf{d}}{\|\mathbf{u} \times \mathbf{d}\|}, \qquad \theta = \arccos(\mathbf{u} \cdot \mathbf{d})
+```
+
+where **u** and **d** are the unit directions corresponding to the pointer positions before and after the drag. This quaternion is applied to the camera's basis vectors (e₁, e₂, e₃), which are then passed directly to the ray marching shader as the view matrix.
