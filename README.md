@@ -20,7 +20,7 @@ WebGL does not support rendering to a 3D texture. To apply the ping-pong framebu
 
 ### Arcball Camera Control
 
-The renderer implements arcball rotation without a scene graph or camera abstraction. Dragging maps two screen positions to directions on a virtual sphere; the quaternion that rotates **u** onto **d** is
+The renderer implements arcball rotation from scratch, without relying on framework support. Dragging maps two screen positions to directions on a virtual sphere; the quaternion that rotates **u** onto **d** is
 
 ```math
 q = \cos\tfrac{\theta}{2} + \sin\tfrac{\theta}{2}\,\frac{\mathbf{u} \times \mathbf{d}}{\|\mathbf{u} \times \mathbf{d}\|}, \qquad \theta = \arccos(\mathbf{u} \cdot \mathbf{d})
