@@ -1,5 +1,7 @@
 # GL FDM 3D
 
+**Live demo:** https://galmungral.github.io/gl-fdm-3d/
+
 ## Rhetorical Design
 
 ### Purpose
