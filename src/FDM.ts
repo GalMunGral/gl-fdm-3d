@@ -1,4 +1,6 @@
-import { clamp, createProgramFromScripts } from "./utils";
+import { clamp, createProgramFromSources } from "./utils";
+import vertexSrc from "./FDM_vertex.glsl?raw";
+import fragmentSrc from "./FDM_fragment.glsl?raw";
 
 export class FDM {
   private gl: WebGL2RenderingContext | null = null;
@@ -25,10 +27,10 @@ export class FDM {
       canvas.height = N * N;
 
       const gl = (this.gl = canvas.getContext("webgl2")!);
-      const program = (this.program = await createProgramFromScripts(
+      const program = (this.program = createProgramFromSources(
         gl,
-        "./FDM_vertex.glsl",
-        "./FDM_fragment.glsl"
+        vertexSrc,
+        fragmentSrc
       ));
 
       gl.getExtension("EXT_color_buffer_float");

@@ -1,5 +1,3 @@
 .DS_Store
 node_modules/
-docs/
-dist/*.js
-dist/*.glsl
+dist/

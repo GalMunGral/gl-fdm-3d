@@ -1,12 +1,10 @@
 {
   "scripts": {
-    "build": "cp -r src/*.glsl dist && esbuild ./src/index.ts --format=esm --outdir=dist --bundle",
-    "dev": "npm run build -- --watch"
+    "build": "vite build",
+    "dev": "vite"
   },
   "devDependencies": {
-    "@types/three": "^0.163.0",
-    "esbuild": "^0.18.17",
-    "typescript": "^5.1.6"
+    "vite": "^8.0.11"
   },
   "dependencies": {
     "@types/d3": "^7.4.3",

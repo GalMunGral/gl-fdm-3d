@@ -1,5 +1,7 @@
 import * as THREE from "three";
-import { createProgramFromScripts } from "./utils";
+import { createProgramFromSources } from "./utils";
+import vertexSrc from "./RM_vertex.glsl?raw";
+import fragmentSrc from "./RM_fragment.glsl?raw";
 
 export class RayMarching {
   private gl: WebGL2RenderingContext | null = null;
@@ -33,10 +35,10 @@ export class RayMarching {
       canvas.style.height = window.innerHeight + "px";
       const gl = (this.gl = canvas.getContext("webgl2", { antialias: true })!);
 
-      const program = (this.program = await createProgramFromScripts(
+      const program = (this.program = createProgramFromSources(
         gl,
-        "./RM_vertex.glsl",
-        "./RM_fragment.glsl"
+        vertexSrc,
+        fragmentSrc
       ));
 
       const vertices = [-1, 1, 1, 1, -1, -1, 1, -1];
